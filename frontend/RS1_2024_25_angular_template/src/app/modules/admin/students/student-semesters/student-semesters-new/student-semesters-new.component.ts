@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentGetByIdEndpointService, StudentGetByIdResponse } from '../../../../../endpoints/student-endpoints/student-get-by-id-endpoint.service';
-import { SemesterGetByStudentService,SemesterReadResponse } from '../../../../../endpoints/semester-endpoints/semester-get-byStudentService';
+import { SemesterGetByStudentService,SemesterReadResponse, SemesterRequest } from '../../../../../endpoints/semester-endpoints/semester-get-byStudentService';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -39,7 +39,7 @@ export class StudentSemestersNewComponent implements OnInit {
     this.getStudent(this.studentId);
     this.getSemesters(this.studentId);
     this.getAkademskeGodine();
-   
+
     this.semesterForm.get('godinaStudija')?.valueChanges.subscribe(value=>{
       let exists=false;
       for(let i=0;i<this.semesters.length;i++){
@@ -61,8 +61,8 @@ export class StudentSemestersNewComponent implements OnInit {
         this.semesterForm.patchValue({ cijenaSkolarine: checked ? 400 : 1800 });
       });
 
-    this.semesterForm.get('cijenaSkolarine')?.disable();
-    this.semesterForm.get('obnova')?.disable();
+      this.semesterForm.get('cijenaSkolarine')?.disable();
+      this.semesterForm.get('obnova')?.disable();
   }
   
   getStudent(id:number){
@@ -84,5 +84,29 @@ export class StudentSemestersNewComponent implements OnInit {
     })
   }
 
-  saveSemester(){}
+  saveSemester():void{
+  
+    if(this.semesterForm.invalid) return;
+
+    const semesterData: SemesterRequest = {
+      studentId: this.studentId,
+      datumUpisa: this.semesterForm.value.datum,
+      godinaStudija: Number(this.semesterForm.value.godinaStudija),
+      akademskaGodinaId: this.semesterForm.value.akGodina,
+      cijenaSkolarine: this.semesterForm.getRawValue().cijenaSkolarine,
+     obnova: this.semesterForm.getRawValue().obnova
+    };
+
+    console.log("Semester Data: ", semesterData);
+
+
+    this.semesterService.createSemester(semesterData).subscribe({
+      next:()=>{
+        this.router.navigate(['/admin/student/semester',this.studentId]);
+      },
+      error:()=>{
+        console.error("Error saving semesters");
+      }
+    })
+  }
 }
