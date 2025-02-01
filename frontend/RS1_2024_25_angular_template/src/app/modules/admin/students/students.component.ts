@@ -72,13 +72,9 @@ export class StudentsComponent implements OnInit, AfterViewInit {
       pageSize: pageSize
     }).subscribe({
       next: (data) => {
-        console.log("data prije filtera: ",data.dataItems);
         this.dataSource = new MatTableDataSource<StudentGetAllResponse>(
           this.showDeleted ? data.dataItems : data.dataItems.filter((s) => !s.isDeleted)
         );
-        console.log("data poslije filtera: ",data.dataItems);
-        console.log(this.showDeleted);
-
         this.paginator.length = data.totalCount;
       },
       error: (err) => {
@@ -159,13 +155,7 @@ export class StudentsComponent implements OnInit, AfterViewInit {
 
 
   openStudentSemesters(id:number) {
-    this.dialog.open(MyDialogSimpleComponent, {
-      width: '350px',
-      data: {
-        title: 'Ispitni zadatak',
-        message: 'Implementirajte matičnu knjigu?'
-      }
-    });
+    this.router.navigate(['/admin/student/semester', id]);
   }
 
 }

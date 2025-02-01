@@ -14,6 +14,8 @@ import {SharedModule} from '../shared/shared.module';
 import {Cities2EditComponent} from './cities2/cities2-edit/cities2-edit.component';
 import {Cities2Component} from './cities2/cities2.component';
 import {MatButton} from "@angular/material/button";
+
+
 import {
   MatCell,
   MatColumnDef,
@@ -21,7 +23,7 @@ import {
   MatHeaderRow,
   MatRow,
   MatTable,
-  MatTableModule
+  MatTableModule,
 } from "@angular/material/table";
 import {MatPaginator} from '@angular/material/paginator';
 import {MatFormField, MatFormFieldModule} from '@angular/material/form-field';
@@ -44,7 +46,9 @@ import { StudentsComponent } from './students/students.component';
 import { StudentEditComponent } from './students/student-edit/student-edit.component';
 import { StudentSemestersComponent } from './students/student-semesters/student-semesters.component';
 import { StudentSemestersNewComponent } from './students/student-semesters/student-semesters-new/student-semesters-new.component';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -93,6 +97,9 @@ import { StudentSemestersNewComponent } from './students/student-semesters/stude
     MatOption,
     MatCard,
     MatProgressSpinner,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule
     // Omogućava pristup svemu što je eksportovano iz SharedModule
   ],
   providers: []
