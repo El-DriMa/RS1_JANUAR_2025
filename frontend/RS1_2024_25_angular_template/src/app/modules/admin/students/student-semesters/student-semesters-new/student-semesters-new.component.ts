@@ -53,7 +53,6 @@ export class StudentSemestersNewComponent implements OnInit {
           this.semesterForm.get('obnova')?.setValue(true);
         }else{
           this.semesterForm.get('obnova')?.setValue(false);
-
         }
       })
       
@@ -94,7 +93,7 @@ export class StudentSemestersNewComponent implements OnInit {
       godinaStudija: Number(this.semesterForm.value.godinaStudija),
       akademskaGodinaId: this.semesterForm.value.akGodina,
       cijenaSkolarine: this.semesterForm.getRawValue().cijenaSkolarine,
-     obnova: this.semesterForm.getRawValue().obnova
+      obnova: this.semesterForm.getRawValue().obnova
     };
 
     console.log("Semester Data: ", semesterData);

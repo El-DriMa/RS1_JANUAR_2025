@@ -15,8 +15,9 @@
   </mat-form-field>
 </div>
 
-<button (click)="showDeleted = !showDeleted" (click)="fetchStudents()">
-  {{ showDeleted ? 'Sakrij obrisane' : 'Prikaži obrisane' }}
+
+<button color="primary" mat-raised-button (click)="showDeleted=!showDeleted" (click)="fetchStudents()">
+  {{showDeleted ? 'Sakrij obrisane' : 'Prikazi obrisane'}}
 </button>
 
 

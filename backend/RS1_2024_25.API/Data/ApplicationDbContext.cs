@@ -28,7 +28,6 @@ public class ApplicationDbContext(DbContextOptions options, IHttpContextAccessor
     public DbSet<Professor> ProfessorsAll { get; set; }
     public DbSet<Student> StudentsAll { get; set; }
     public DbSet<Semester> SemestersAll { get; set; }
-
     // IQueryable umjesto DbSet
     public IQueryable<MyAppUser> MyAppUsers => Set<MyAppUser>().Where(e => e.TenantId == CurrentTenantIdThrowIfFail);
     public IQueryable<MyAuthenticationToken> MyAuthenticationTokens => Set<MyAuthenticationToken>();

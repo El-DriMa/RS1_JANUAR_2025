@@ -22,6 +22,7 @@ namespace RS1_2024_25.API.Endpoints.AcademicYearEndpoints
             return Ok(academicYears);
         }
 
+
         [HttpGet("{id}")]
         public async Task<ActionResult> GetAcademicYearById(int id,CancellationToken cancellationToken = default)
         {
